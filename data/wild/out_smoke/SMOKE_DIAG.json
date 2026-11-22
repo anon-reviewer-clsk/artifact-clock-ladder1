@@ -1,0 +1,12 @@
+{
+ "diag": {
+  "cv_len": 0.0,
+  "cv_chunk": 0.101,
+  "usage_rate": 0.667,
+  "model_echo_rate": 1.0,
+  "reasoning_rate": 0.0,
+  "done_rate": 1.0,
+  "truncated_rate": 0.0
+ },
+ "verdict": "INCONCLUSIVE — 输出被强约束或样本太少，需改 prompt/加样本后再判"
+}

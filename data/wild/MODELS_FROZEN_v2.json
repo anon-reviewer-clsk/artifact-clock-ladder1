@@ -1,0 +1,140 @@
+{
+ "version": 2,
+ "frozen_at": "2026-11-19T19:45+08:00",
+ "basis": "preflight 15 candidates x 1 request with production body; selection rule fixed before results",
+ "models": [
+  {
+   "request_name": "qwen3.5-27b",
+   "provider": "ali-native",
+   "group": "H1-qwen3.5",
+   "size_hint": "27B dense",
+   "status": "usable"
+  },
+  {
+   "request_name": "qwen3.6-27b",
+   "provider": "ali-native",
+   "group": "H1-qwen3.6",
+   "size_hint": "27B dense",
+   "status": "usable"
+  },
+  {
+   "request_name": "qwen3.8-27b",
+   "provider": "ali-native",
+   "group": "H1-qwen3.8",
+   "size_hint": "27B dense",
+   "status": "usable"
+  },
+  {
+   "request_name": "qwen3.5-35b-a3b",
+   "provider": "ali-native",
+   "group": "H2-qwen3.5",
+   "size_hint": "35B total / 3B active MoE",
+   "status": "usable"
+  },
+  {
+   "request_name": "qwen3.6-35b-a3b",
+   "provider": "ali-native",
+   "group": "H2-qwen3.6",
+   "size_hint": "35B total / 3B active MoE",
+   "status": "usable"
+  },
+  {
+   "request_name": "qwen3.5-122b-a10b",
+   "provider": "ali-native",
+   "group": "S-mid",
+   "size_hint": "122B total / 10B active MoE",
+   "status": "usable"
+  },
+  {
+   "request_name": "qwen3.5-397b-a17b",
+   "provider": "ali-native",
+   "group": "S-max",
+   "size_hint": "397B total / 17B active MoE",
+   "status": "usable"
+  },
+  {
+   "request_name": "deepseek-v4-pro",
+   "provider": "deepseek-native",
+   "group": "X-v4pro",
+   "size_hint": "undisclosed",
+   "status": "usable"
+  },
+  {
+   "request_name": "kimi-k3",
+   "provider": "moonshot",
+   "group": "X-k3",
+   "size_hint": "undisclosed",
+   "status": "usable"
+  },
+  {
+   "request_name": "kimi-k2.6",
+   "provider": "moonshot",
+   "group": "X-k26",
+   "size_hint": "undisclosed",
+   "status": "usable"
+  },
+  {
+   "request_name": "qwen3.8-flash",
+   "provider": "ali-native",
+   "group": "R-flash",
+   "size_hint": "undisclosed",
+   "status": "usable"
+  },
+  {
+   "request_name": "deepseek-v4.1-flash",
+   "provider": "deepseek-native",
+   "group": "R-dsv41f",
+   "size_hint": "undisclosed",
+   "status": "usable"
+  }
+ ],
+ "excluded": [
+  {
+   "model": "glm-5.3",
+   "reason": "reasoning_content 613 chars, finish_reason=length at max_tokens=160; content 2 bytes",
+   "class": "unusable_reasoning_truncated"
+  },
+  {
+   "model": "MiniMax-M2.5",
+   "reason": "reasoning_content 162408 chars in one request; 102 requests/session infeasible",
+   "class": "unusable_reasoning_dominated"
+  },
+  {
+   "model": "vanchin/deepseek-v4-pro",
+   "reason": "HTTP 400 product not activated",
+   "class": "not_activated"
+  },
+  {
+   "model": "vanchin/deepseek-v3.1-terminus",
+   "reason": "HTTP 400 product not activated",
+   "class": "not_activated"
+  },
+  {
+   "model": "siliconflow/deepseek-v3.1-terminus",
+   "reason": "HTTP 200 but single 238-byte non-SSE line, no content/usage/[DONE]",
+   "class": "unusable_empty_stream"
+  }
+ ],
+ "contrasts": {
+  "D1_scale_family": "executed: 27B/35B-A3B/122B-A10B/397B-A17B across 3 qwen generations + 2 other families",
+  "D2_cross_provider": "not_executed: activation required for every vanchin twin",
+  "D3_quantization": "unverified: no quant labels",
+  "D4_hard_pair": "executed: qwen3.5/3.6/3.8-27b (same size, 3 generations) and qwen3.5/3.6-35b-a3b"
+ },
+ "design": {
+  "models": 12,
+  "prompts": 6,
+  "rounds": 17,
+  "requests_per_session": 1224,
+  "per_model_per_session": 102,
+  "chance": 0.0833,
+  "max_session_minutes": 120,
+  "rpm": 40
+ },
+ "known_limits": [
+  "single aggregator gateway: no gateway-effect contrast",
+  "excludes reasoning-mode models; conclusion does not cover them",
+  "S1 with 4 models is a separate pilot and must not be merged with the 12-model series",
+  "D2/D3 not executed"
+ ]
+}

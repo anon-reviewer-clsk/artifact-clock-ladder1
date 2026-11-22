@@ -1,0 +1,130 @@
+{
+ "mock_url": "http://127.0.0.1:56469/v1/chat/completions",
+ "requests": 72,
+ "per_model": {
+  "mock-nousage": 12,
+  "mock-trunc": 12,
+  "mock-429": 12,
+  "mock-single": 12,
+  "mock-batched": 12,
+  "mock-chunky": 12
+ },
+ "checks": [
+  {
+   "name": "T1 CSV 列与 PREREG §4 完全一致",
+   "ok": true,
+   "expected": "43",
+   "got": "43"
+  },
+  {
+   "name": "T2a content_chunk_count 反映分块粒度（chunky>batched>single=1）",
+   "ok": true,
+   "expected": "40>4>1",
+   "got": "42>4>1"
+  },
+  {
+   "name": "T2b chunk_count = 内容块 + role 块 + 终止块",
+   "ok": true,
+   "expected": "content+2",
+   "got": "44 vs 42+2"
+  },
+  {
+   "name": "T3 ttft_role_ms < ttft_content_ms（未把 role chunk 当首 token）",
+   "ok": true,
+   "expected": "True",
+   "got": "True"
+  },
+  {
+   "name": "T4 sse_overhead_bytes>0 且 sse_bytes_total>output_text_bytes",
+   "ok": true,
+   "expected": "True",
+   "got": "True"
+  },
+  {
+   "name": "T5 正常流 done_seen=True 且 content_sha256 为 64 位",
+   "ok": true,
+   "expected": "True",
+   "got": "True"
+  },
+  {
+   "name": "T6 429: status=429 / error_class / Retry-After / attempts=1",
+   "ok": true,
+   "expected": "429/rate_limited/2/1",
+   "got": "429/429:rate_limited/2/1"
+  },
+  {
+   "name": "T7 截断: truncated=True / finish_reason=length / done_seen=False",
+   "ok": true,
+   "expected": "True/length/False",
+   "got": "True/length/False"
+  },
+  {
+   "name": "T8 缺 usage: completion_tokens 为空（应判 invalid）",
+   "ok": true,
+   "expected": "''",
+   "got": "''"
+  },
+  {
+   "name": "T9 每轮 = M×P 且 (模型,prompt) 不重复",
+   "ok": true,
+   "expected": "36/round",
+   "got": "{0: 36, 1: 36}"
+  },
+  {
+   "name": "T10 轮间顺序不同（未按模型分块）",
+   "ok": true,
+   "expected": ">=2 种顺序",
+   "got": "2 种"
+  },
+  {
+   "name": "T11 CSV 不含 Bearer/key/公网 IP",
+   "ok": true,
+   "expected": "none",
+   "got": "none"
+  },
+  {
+   "name": "T12 预算闸门触发并停止",
+   "ok": true,
+   "expected": "budget_cap 且早停",
+   "got": "budget_cap n=3"
+  },
+  {
+   "name": "T13 拒绝非 https 外部端点",
+   "ok": true,
+   "expected": "SystemExit",
+   "got": "SystemExit"
+  },
+  {
+   "name": "T14 默认 max_retries=0（所有行 attempts=1）",
+   "ok": true,
+   "expected": "1",
+   "got": "1"
+  }
+ ],
+ "passed": 15,
+ "total": 15,
+ "session": {
+  "session_id": "MOCK-S1",
+  "csv": "E:\\SGX\\Analysis\\reports\\wild_full\\out_mock\\wild_full_MOCK-S1.csv",
+  "csv_sha256": "a6759e67f8ae183465a807300bd66936a56dfd2473687c3069527ae099bbe146",
+  "rounds_planned": 2,
+  "rounds_done": 2,
+  "rounds_complete": 2,
+  "budget_estimate_usd": 0.0,
+  "stop_reason": "completed",
+  "elapsed_min": 0.1,
+  "seed": 20261118
+ },
+ "budget_session": {
+  "session_id": "MOCK-BUDGET",
+  "csv": "E:\\SGX\\Analysis\\reports\\wild_full\\out_mock\\budget\\wild_full_MOCK-BUDGET.csv",
+  "csv_sha256": "920f1959efe09a97bfc8e6c1ebc56338db86ac1c1043ba2946886be4ba8331e8",
+  "rounds_planned": 6,
+  "rounds_done": 1,
+  "rounds_complete": 0,
+  "budget_estimate_usd": 0.48,
+  "stop_reason": "budget_cap",
+  "elapsed_min": 0.0,
+  "seed": 20261118
+ }
+}

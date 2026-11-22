@@ -1,0 +1,14 @@
+{
+ "session": "S2v2-20261119T2100",
+ "rows": 1224,
+ "csv": "wild_full_S2v2-20261119T2100.csv",
+ "csv_sha256": "53ff188eacdac2c00e6cb074a9be0d593f70a896d6f3f20a3acbaae043de0ca0",
+ "tokens": {
+  "prompt": 30345,
+  "completion": 29228,
+  "total": 59573
+ },
+ "cost_upper_bound_usd": 0.8936,
+ "same_day_replication": true,
+ "stop_reason": "completed"
+}

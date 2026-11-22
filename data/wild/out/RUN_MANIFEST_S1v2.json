@@ -1,0 +1,14 @@
+{
+ "session": "S1v2-20261119T1950",
+ "rows": 1224,
+ "csv": "wild_full_S1v2-20261119T1950.csv",
+ "csv_sha256": "51f1d9251c55cd301271024c1f46a5183e175a41436adf4c2509442b6ed51d21",
+ "tokens": {
+  "prompt": 30267,
+  "completion": 29144,
+  "total": 59411
+ },
+ "cost_upper_bound_usd": 0.8912,
+ "same_day_replication": false,
+ "stop_reason": "completed"
+}

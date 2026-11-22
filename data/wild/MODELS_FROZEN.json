@@ -1,0 +1,70 @@
+{
+ "frozen_at": "2026-11-19T13:2x+08:00",
+ "basis": "preflight 5 requests with production body (temp=0, max_tokens=160, enable_thinking=false, stream_options.include_usage=true)",
+ "models_in_session": [
+  {
+   "request_name": "qwen3.5-27b",
+   "provider": "ali-native",
+   "family": "qwen3.5",
+   "size_hint": "27B dense",
+   "status": "usable"
+  },
+  {
+   "request_name": "qwen3.5-122b-a10b",
+   "provider": "ali-native",
+   "family": "qwen3.5",
+   "size_hint": "122B total / 10B active",
+   "status": "usable"
+  },
+  {
+   "request_name": "qwen3.5-397b-a17b",
+   "provider": "ali-native",
+   "family": "qwen3.5",
+   "size_hint": "397B total / 17B active",
+   "status": "usable"
+  },
+  {
+   "request_name": "deepseek-v4-pro",
+   "provider": "deepseek-native",
+   "family": "deepseek-v4",
+   "size_hint": "undisclosed",
+   "status": "usable"
+  }
+ ],
+ "excluded": [
+  {
+   "request_name": "siliconflow/deepseek-v3.1-terminus",
+   "status": "unusable_empty_stream",
+   "evidence": "HTTP 200 but a single 238-byte non-SSE line; 0 content chunks, 0 usage, no model echo, no [DONE]; two param variants identical",
+   "note": "excluded for availability, not for outcome"
+  },
+  {
+   "request_name": "vanchin/deepseek-v4-pro",
+   "status": "not_activated",
+   "evidence": "HTTP 400 error.code=invalid_parameter_error, message='The product is not activated, please confirm that you have activated products and try again after activation.'"
+  },
+  {
+   "request_name": "vanchin/deepseek-v3.1-terminus",
+   "status": "not_activated",
+   "evidence": "HTTP 400, same class as above"
+  }
+ ],
+ "contrasts": {
+  "D1_scale_family": "executed: qwen3.5 27B / 122B-a10b / 397B-a17b + deepseek-v4 (cross-family)",
+  "D2_cross_provider": "not_executed: every vanchin/* twin returns 400 (product not activated); siliconflow twin is unusable",
+  "D3_quantization": "unverified: no quant labels in ids or docs",
+  "D4_hard_pair": "not_executed: available ladder 27B / 122B-a10b / 397B-a17b is 4.5x and 3.3x, not adjacent; 27B vs 35B-A3B differs in architecture (dense vs MoE)"
+ },
+ "design": {
+  "models": 4,
+  "prompts": 6,
+  "rounds": 17,
+  "requests_per_session": 408,
+  "per_model_per_session": 102
+ },
+ "known_limits": [
+  "single aggregator gateway: no gateway-effect contrast",
+  "prompt_tokens is 25-28 regardless of prompt text; cause unverified, treated as opaque metadata",
+  "first_chunk_bytes removed from C1 because it encodes the echoed model-name length"
+ ]
+}

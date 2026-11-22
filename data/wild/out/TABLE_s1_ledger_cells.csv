@@ -1,0 +1,13 @@
+model_requested,http_status,n
+deepseek-v4-pro,200,102
+deepseek-v4.1-flash,200,102
+kimi-k2.6,200,102
+kimi-k3,200,102
+qwen3.5-122b-a10b,200,102
+qwen3.5-27b,200,102
+qwen3.5-35b-a3b,200,102
+qwen3.5-397b-a17b,200,102
+qwen3.6-27b,200,102
+qwen3.6-35b-a3b,200,102
+qwen3.8-27b,200,102
+qwen3.8-flash,200,102

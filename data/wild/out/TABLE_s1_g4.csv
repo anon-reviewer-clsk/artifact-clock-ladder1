@@ -1,0 +1,7 @@
+prompt,equal_length_pairs,chunk_differs,example
+P1,20706,0,-
+P2,18766,10649,4 vs 5 chunks at 13 bytes
+P3,10591,3468,1 vs 2 chunks at 2 bytes
+P4,17698,5297,2 vs 3 chunks at 17 bytes
+P5,647,131,19 vs 16 chunks at 349 bytes
+P6,460,218,38 vs 24 chunks at 353 bytes

@@ -1,0 +1,39 @@
+{
+ "generated": "2026-11-19T13:38:15",
+ "session": "S1-20261119T1330",
+ "stage": "session-1 collection",
+ "network_requests": 408,
+ "csv": "wild_full_S1-20261119T1330.csv",
+ "csv_sha256": "d842411467b86791f19236e96e0b7f9672f3052d725faaffe51dfafbd6df3f08",
+ "rows": 408,
+ "inputs": {
+  "PREREG_full.md": "5860d2fcf5f3e83e1b50d43c4c267d2757790c865df252685c55a6117dfe14f9",
+  "AMENDMENT_1_endpoint.md": "daee6f1511f849f9c04f12767bd70caaf4981d15e97bb5a2c8428dc789509234",
+  "AMENDMENT_2_smoke_metric.md": "a3d3b308f45ffb7f63bfe8301bd3b675be112d82edad08bee0335b33b043037f",
+  "AMENDMENT_3_gate.md": "06fbb9179b27c3d9f275c130dd5e2ccb7e5ce80d0f79f75e1c96d6fd0a283c70",
+  "MODELS_FROZEN.json": "579bac4b6d95ea5426a5a9e44d19cfded02688ae7c658c47a386e8b33284a191",
+  "plan_s1.json": "87150cb27bb0d19c5ec31fbd0e34039da0af302326ad2944b22525d5b6215941",
+  "prompts.json": "f0554b52e252b142e9c0815dd1a48e3980f8ecb780b40491c170425eb4de54c8",
+  "collector.py": "a7f83a9e49c45f24c960943e55695d1ab7e2effd3dffbfe61293ebb1bd50e45d"
+ },
+ "tokens": {
+  "prompt": 9078,
+  "completion": 9938,
+  "total": 19016
+ },
+ "cost_upper_bound_usd": 0.2852,
+ "cost_note": "按 plan 输入的 15 USD/1M 上限价折算；真实计费未核验，以账单为准",
+ "env": {
+  "python": "3.13.14",
+  "pandas": "3.0.1",
+  "numpy": "2.4.2",
+  "platform": "Windows-11-10.0.26200-SP0"
+ },
+ "stop_reason": "completed",
+ "elapsed_min": 14.34,
+ "notes": [
+  "no retries, no rate-limit bypass",
+  "endpoint hostname deliberately kept out of this manifest",
+  "no response bodies stored; only sha256 and length-derived fields"
+ ]
+}

@@ -1,0 +1,18 @@
+  H1 qwen3.5-27b              st=200 v=0 chunks=1  bytes=1    done=True  trunc=False usable=True 
+  H1 qwen3.6-27b              st=200 v=0 chunks=2  bytes=2    done=True  trunc=False usable=True 
+  H1 qwen3.8-27b              st=200 v=0 chunks=2  bytes=2    done=True  trunc=False usable=True 
+  H2 qwen3.5-35b-a3b          st=200 v=0 chunks=1  bytes=1    done=True  trunc=False usable=True 
+  H2 qwen3.6-35b-a3b          st=200 v=0 chunks=1  bytes=1    done=True  trunc=False usable=True 
+  S  qwen3.5-122b-a10b        st=200 v=0 chunks=2  bytes=2    done=True  trunc=False usable=True 
+  S  qwen3.5-397b-a17b        st=200 v=0 chunks=1  bytes=1    done=True  trunc=False usable=True 
+  X  deepseek-v4-pro          st=200 v=0 chunks=1  bytes=2    done=True  trunc=False usable=True 
+  X  glm-5.3                  st=200 v=2 chunks=1  bytes=2    done=True  trunc=True  usable=True 
+  X  kimi-k3                  st=200 v=0 chunks=1  bytes=2    done=True  trunc=False usable=True 
+  X  MiniMax-M2.5             st=200 v=2 chunks=1  bytes=1    done=True  trunc=False usable=True 
+  R  qwen3.8-flash            st=200 v=0 chunks=2  bytes=2    done=True  trunc=False usable=True 
+  R  deepseek-v4.1-flash      st=200 v=0 chunks=1  bytes=2    done=True  trunc=False usable=True 
+  R  qwen3.6-flash            st=200 v=0 chunks=1  bytes=1    done=True  trunc=False usable=True 
+  R  kimi-k2.6                st=200 v=0 chunks=1  bytes=2    done=True  trunc=False usable=True 
+
+usable: 15 / 15
+selected 12: ['qwen3.5-27b', 'qwen3.6-27b', 'qwen3.8-27b', 'qwen3.5-35b-a3b', 'qwen3.6-35b-a3b', 'qwen3.5-122b-a10b', 'qwen3.5-397b-a17b', 'deepseek-v4-pro', 'glm-5.3', 'kimi-k3', 'MiniMax-M2.5', 'qwen3.8-flash']

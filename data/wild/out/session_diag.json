@@ -1,0 +1,66 @@
+{
+ "csv": "wild_full_S1v2-20261119T1950.csv",
+ "chance": 0.0833,
+ "rows": [
+  {
+   "prompt": "P1",
+   "n": 204,
+   "models": 12,
+   "C1_packet": 0.833,
+   "C3_length": 0.083,
+   "C2_timing": 0.27,
+   "null_wall_ts": 0.015,
+   "null_order": 0.098
+  },
+  {
+   "prompt": "P2",
+   "n": 204,
+   "models": 12,
+   "C1_packet": 0.73,
+   "C3_length": 0.132,
+   "C2_timing": 0.373,
+   "null_wall_ts": 0.01,
+   "null_order": 0.083
+  },
+  {
+   "prompt": "P3",
+   "n": 204,
+   "models": 12,
+   "C1_packet": 0.75,
+   "C3_length": 0.167,
+   "C2_timing": 0.358,
+   "null_wall_ts": 0.0,
+   "null_order": 0.059
+  },
+  {
+   "prompt": "P4",
+   "n": 204,
+   "models": 12,
+   "C1_packet": 0.667,
+   "C3_length": 0.162,
+   "C2_timing": 0.314,
+   "null_wall_ts": 0.0,
+   "null_order": 0.093
+  },
+  {
+   "prompt": "P5",
+   "n": 204,
+   "models": 12,
+   "C1_packet": 0.495,
+   "C3_length": 0.314,
+   "C2_timing": 0.471,
+   "null_wall_ts": 0.0,
+   "null_order": 0.093
+  },
+  {
+   "prompt": "P6",
+   "n": 204,
+   "models": 12,
+   "C1_packet": 0.593,
+   "C3_length": 0.299,
+   "C2_timing": 0.387,
+   "null_wall_ts": 0.0,
+   "null_order": 0.054
+  }
+ ]
+}

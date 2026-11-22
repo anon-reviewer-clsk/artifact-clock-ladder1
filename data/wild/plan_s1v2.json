@@ -1,0 +1,30 @@
+{
+  "endpoint": "FROM_KEY_FILE",
+  "prompts": "prompts.json",
+  "models": [
+    {"request_name": "qwen3.5-27b", "provider": "ali-native"},
+    {"request_name": "qwen3.6-27b", "provider": "ali-native"},
+    {"request_name": "qwen3.8-27b", "provider": "ali-native"},
+    {"request_name": "qwen3.5-35b-a3b", "provider": "ali-native"},
+    {"request_name": "qwen3.6-35b-a3b", "provider": "ali-native"},
+    {"request_name": "qwen3.5-122b-a10b", "provider": "ali-native"},
+    {"request_name": "qwen3.5-397b-a17b", "provider": "ali-native"},
+    {"request_name": "deepseek-v4-pro", "provider": "deepseek-native"},
+    {"request_name": "kimi-k3", "provider": "moonshot"},
+    {"request_name": "kimi-k2.6", "provider": "moonshot"},
+    {"request_name": "qwen3.8-flash", "provider": "ali-native"},
+    {"request_name": "deepseek-v4.1-flash", "provider": "deepseek-native"}
+  ],
+  "rounds": 17,
+  "rpm": 40,
+  "max_retries": 0,
+  "max_tokens": 160,
+  "temperature": 0.0,
+  "timeout_s": 120,
+  "budget_usd_session": 3.0,
+  "price_in_per_mtok": 0.0,
+  "price_out_per_mtok": 15.0,
+  "max_session_minutes": 120,
+  "seed": 20261119,
+  "extra_body": {"enable_thinking": false, "stream_options": {"include_usage": true}}
+}

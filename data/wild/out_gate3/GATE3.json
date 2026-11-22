@@ -1,0 +1,101 @@
+{
+ "n": 11,
+ "gate_ok": 9,
+ "per_prompt": [
+  {
+   "prompt": "P1",
+   "bytes": [
+    2,
+    2,
+    2
+   ],
+   "chunks": [
+    1,
+    1,
+    1
+   ],
+   "models": [
+    "qwen3.5-27b",
+    "qwen3.5-122b-a10b",
+    "deepseek-v4-pro"
+   ],
+   "equal_length_pairs": 3,
+   "matched_pairs": 0,
+   "equal_pair_chunks": [
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     1
+    ]
+   ]
+  },
+  {
+   "prompt": "P3",
+   "bytes": [
+    1,
+    2,
+    2
+   ],
+   "chunks": [
+    1,
+    2,
+    1
+   ],
+   "models": [
+    "qwen3.5-27b",
+    "qwen3.5-122b-a10b",
+    "deepseek-v4-pro"
+   ],
+   "equal_length_pairs": 1,
+   "matched_pairs": 1,
+   "equal_pair_chunks": [
+    [
+     2,
+     1
+    ]
+   ]
+  },
+  {
+   "prompt": "P5",
+   "bytes": [
+    330,
+    387,
+    379
+   ],
+   "chunks": [
+    25,
+    20,
+    16
+   ],
+   "models": [
+    "qwen3.5-27b",
+    "qwen3.5-122b-a10b",
+    "deepseek-v4-pro"
+   ],
+   "equal_length_pairs": 0,
+   "matched_pairs": 0,
+   "equal_pair_chunks": []
+  }
+ ],
+ "verdict": "INCONCLUSIVE",
+ "n_pass_prompts": 1,
+ "have_equal_pairs": 2,
+ "provider_probes": [
+  {
+   "model_requested": "siliconflow/deepseek-v3.1-terminus",
+   "http_status": 200
+  },
+  {
+   "model_requested": "vanchin/deepseek-v3.1-terminus",
+   "http_status": 400
+  }
+ ],
+ "usage_rate": 1.0
+}

@@ -1,0 +1,37 @@
+[
+ {
+  "model": "qwen3.5-27b",
+  "status": 200,
+  "error": "",
+  "usage": true,
+  "chunks": 1
+ },
+ {
+  "model": "qwen3.5-122b-a10b",
+  "status": 200,
+  "error": "",
+  "usage": true,
+  "chunks": 2
+ },
+ {
+  "model": "qwen3.5-397b-a17b",
+  "status": 200,
+  "error": "",
+  "usage": true,
+  "chunks": 1
+ },
+ {
+  "model": "deepseek-v4-pro",
+  "status": 200,
+  "error": "",
+  "usage": true,
+  "chunks": 1
+ },
+ {
+  "model": "siliconflow/deepseek-v3.1-terminus",
+  "status": 200,
+  "error": "",
+  "usage": false,
+  "chunks": 0
+ }
+]

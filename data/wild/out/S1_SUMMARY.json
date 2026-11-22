@@ -1,0 +1,18 @@
+{
+ "csv": "E:\\SGX\\Analysis\\reports\\wild_full\\out\\wild_full_S1v2-20261119T1950.csv",
+ "rows": 1224,
+ "designed": 1224,
+ "valid": 1224,
+ "undetermined": 0,
+ "failed": 0,
+ "g4_equal_length_pairs": 68868,
+ "g4_chunk_differs": 19763,
+ "g4_verdict": "PASS",
+ "g4_same_round": {
+  "pairs": 3626,
+  "differs": 1141
+ },
+ "usage_rate": 1.0,
+ "trunc_rate": 0.0,
+ "reason_rate": 0.0
+}

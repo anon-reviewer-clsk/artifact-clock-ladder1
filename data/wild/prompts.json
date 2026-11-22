@@ -1,0 +1,13 @@
+{
+  "frozen": "2026-11-18",
+  "note": "Frozen prompt set for wild_full. Six prompts: 4 constrained (short/medium), 2 open. Never edit after first real request.",
+  "parameters": {"stream": true, "temperature": 0.0, "max_tokens": 160},
+  "prompts": [
+    {"id": "P1", "class": "short-constrained", "text": "Reply with exactly one word: ok."},
+    {"id": "P2", "class": "short-constrained", "text": "List the integers 1 to 5, comma separated, nothing else."},
+    {"id": "P3", "class": "short-constrained", "text": "Answer with a single digit: 7*6=?"},
+    {"id": "P4", "class": "medium-constrained", "text": "Name the three primary colors, comma separated, no other text."},
+    {"id": "P5", "class": "medium-open", "text": "Write exactly two sentences on why caching helps web servers."},
+    {"id": "P6", "class": "open", "text": "Summarise the plot of an invented film in about 60 words."}
+  ]
+}

@@ -1,0 +1,122 @@
+#!/usr/bin/env python3
+"""make_appendix_tables.py — regenerate Appendix Tables 17-21 from the
+request-level records in data/td_shape/.
+
+Usage (from the artifact root):
+    python3 code/td_shape/make_appendix_tables.py > tables_appendix.tex
+
+No result is hard-coded: every cell is computed from the raw JSON/JSONL.
+"""
+from __future__ import annotations
+
+import collections
+import json
+import math
+import statistics as st
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+DATA = ROOT / "data" / "td_shape"
+
+
+def fmt(x: float) -> str:
+    return f"{x:.1f}"
+
+
+def table(caption: str, label: str, body: str, cols: str = "@{}llrrrrr@{}") -> str:
+    return (
+        "\\begin{table}[h]\n\\centering\\small\n"
+        f"\\caption{{{caption}}}\n\\label{{{label}}}\n"
+        "\\setlength{\\tabcolsep}{3pt}\n"
+        f"\\begin{{tabular}}{{{cols}}}\n\\toprule\n{body}\\bottomrule\n"
+        "\\end{tabular}\n\\end{table}\n"
+    )
+
+
+def loopback_quant() -> str:
+    rows = json.load(open(DATA / "raw/a3_raw.json"))
+    g = collections.defaultdict(lambda: collections.defaultdict(list))
+    for r in rows:
+        g[r["model"]][r["variant"]].append(st.median(r["rtts"]))
+    labels = {"dsv1_downstream.onnx": "dsv1\\_downstream",
+              "resnet18.onnx": "ResNet-18",
+              "dsv1_tok_v4.onnx": "\\texttt{tok\\_v4}"}
+    body = "Model & arm & b1 & b2 & b3 & b4 & b5 \\\\\n\\midrule\n"
+    for k, lbl in labels.items():
+        for arm in ("fp32", "int8"):
+            body += f"{lbl} & {arm} & " + " & ".join(fmt(x) for x in g[k][arm]) + " \\\\\n"
+    return table("Quantization, loopback leg; one column per block (ms).", "tab:qloop", body)
+
+
+def wan_quant() -> str:
+    rows = [json.loads(l) for l in open(DATA / "wan_results_quant.jsonl")]
+    g = collections.defaultdict(lambda: collections.defaultdict(list))
+    for r in rows:
+        m, v, _ = r["tag"].split(":")
+        g[m][v].append(r["rtt_med"])
+    labels = {"dsv1_downstream.onnx": "dsv1\\_downstream",
+              "resnet18.onnx": "ResNet-18",
+              "dsv1_tok_v4.onnx": "\\texttt{tok\\_v4}"}
+    body = "Model & arm & b1 & b2 & b3 & b4 & b5 \\\\\n\\midrule\n"
+    for k, lbl in labels.items():
+        for arm in ("fp32", "int8"):
+            body += f"{lbl} & {arm} & " + " & ".join(fmt(x) for x in g[k][arm]) + " \\\\\n"
+    return table("Quantization, SSH-tunnel WAN leg; one column per block (ms). "
+                 "Ping baseline 66--69\\,ms.", "tab:qwan", body)
+
+
+def near_null() -> str:
+    rows = [json.loads(l) for l in open(DATA / "wan_results_nearnull.jsonl")]
+    g = collections.defaultdict(lambda: collections.defaultdict(list))
+    for r in rows:
+        pair, v, _ = r["tag"].split(":")
+        g[pair][v].append(r["rtt_med"])
+    body = "Pair & arm & b1 & b2 & b3 & b4 & b5 \\\\\n\\midrule\n"
+    body += "ResNet-18 & original & " + " & ".join(
+        fmt(x) for x in g["resnet18|resnet18_perm"]["resnet18"]) + " \\\\\n"
+    body += " & permuted & " + " & ".join(
+        fmt(x) for x in g["resnet18|resnet18_perm"]["resnet18_perm"]) + " \\\\\n"
+    body += "\\texttt{tok\\_v4} & original & " + " & ".join(
+        fmt(x) for x in g["tok_v4|tok_v4_l1"]["tok_v4"]) + " \\\\\n"
+    body += " & \\texttt{\\_l1} & " + " & ".join(
+        fmt(x) for x in g["tok_v4|tok_v4_l1"]["tok_v4_l1"]) + " \\\\\n"
+    return table("Same-graph weight permutation, WAN leg; one column per block (ms).",
+                 "tab:perm", body)
+
+
+def early_exit() -> str:
+    rows = json.load(open(DATA / "raw/ee_raw.json"))
+    g = collections.defaultdict(list)
+    for r in rows:
+        g[r["mag"]].append(r["med"])
+    body = "Magnitude & Depth & Blocks \\\\\n\\midrule\n"
+    for mag, v in [("mag:0.1", 0.1), ("mag:0.8", 0.8), ("mag:1.6", 1.6),
+                   ("mag:3.2", 3.2), ("mag:6.0", 6.0)]:
+        depth = min(60, max(1, math.ceil(v * 10)))
+        body += f"{fmt(v)} & {depth} & " + ", ".join(fmt(x) for x in g[mag]) + " \\\\\n"
+    return table("Constructed early-exit model: input magnitude, executed depth, "
+                 "block medians (ms).", "tab:ee", body, "@{}rrl@{}")
+
+
+def moe() -> str:
+    rows = json.load(open(DATA / "raw/moe_raw.json"))
+    g = collections.defaultdict(list)
+    idx = {}
+    for r in rows:
+        g[r["kind"]].append(r["med"])
+        idx[r["kind"]] = tuple(r["idx"])
+    names = {"rand": "normal", "checker": "checkerboard", "ones": "ones",
+             "zeros": "zeros", "small": "$10^{-6}$"}
+    body = "Input family & Selected pair & Blocks \\\\\n\\midrule\n"
+    for k in ("rand", "checker", "ones", "zeros", "small"):
+        if k in g:
+            body += f"{names[k]} & {idx[k][0]}, {idx[k][1]} & " + \
+                    ", ".join(fmt(x) for x in g[k]) + " \\\\\n"
+    return table("Constructed MoE: selected expert pair and block medians (ms).",
+                 "tab:moe", body, "@{}lrl@{}")
+
+
+if __name__ == "__main__":
+    print("% Generated by code/td_shape/make_appendix_tables.py from data/td_shape/")
+    for fn in (loopback_quant, wan_quant, near_null, early_exit, moe):
+        print(fn())

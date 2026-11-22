@@ -1,0 +1,19 @@
+endpoint      : FROM_KEY_FILE
+models        : 12  prompts: 6  rounds: 17
+requests      : 1224  (102 per model)
+rate          : 40 rpm  => ~30.6 min
+est cost      : $2.9376 (prices are plan inputs, not verified)
+budget cap    : $3.00
+max_retries   : 0
+{
+ "session_id": "S2v2-20261119T2100",
+ "csv": "out\\wild_full_S2v2-20261119T2100.csv",
+ "csv_sha256": "53ff188eacdac2c00e6cb074a9be0d593f70a896d6f3f20a3acbaae043de0ca0",
+ "rounds_planned": 17,
+ "rounds_done": 17,
+ "rounds_complete": 17,
+ "budget_estimate_usd": 2.9376,
+ "stop_reason": "completed",
+ "elapsed_min": 34.41,
+ "seed": 20261120
+}
